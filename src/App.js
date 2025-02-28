@@ -10,6 +10,7 @@ import ProductDescription from "./components/ProductDescription";
 import Blogs from "./components/Blogs";
 import BlogDescription from "./components/BlogDescription";
 import Cart from "./components/Cart";
+import Checkout from "./components/Checkout";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/blogs" element={<Blogs />} />
         <Route path="/blog/:blog-title" element={<BlogDescription />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/checkout" element={<Checkout />} />
       </Routes>
       <Footer />
     </BrowserRouter>

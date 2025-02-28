@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import logo from "../assets/images/logo.png";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const [displayMenu, setDisplayMenu] = useState(false);
+  const cartItemsList = useSelector((store) => store.cart.items);
   
   const handleMenu = () => {
     setDisplayMenu(!displayMenu);
@@ -19,9 +21,10 @@ const Header = () => {
         {/* Mobile Icons */}
         <div className="flex"> 
           <div
-            className="lg:hidden cursor-pointer px-2 pt-1 rounded-sm"
+            className="lg:hidden cursor-pointer px-2 pt-1 rounded-sm relative"
           >
-            <i className="fi fi-rr-cart-shopping-fast text-[22px]"></i>
+              <Link to="/cart"><i className="fi fi-rr-cart-shopping-fast text-[22px]"></i></Link>
+              { cartItemsList.length > 0 ? <div className="w-2 h-2 rounded-full bg-red-600 absolute top-1 right-2"></div> : ''}
           </div>
 
           <div
@@ -51,8 +54,9 @@ const Header = () => {
             <li className="py-1 px-2 mx-1">
               <Link to="/contact-us">Contact Us</Link>
             </li>
-            <li className="py-1 px-3">
+            <li className="py-1 px-3 relative">
               <Link to="/cart"><i className="fi fi-rr-cart-shopping-fast text-[22px]"></i></Link>
+              { cartItemsList.length > 0 ? <div className="w-2 h-2 rounded-full bg-red-600 absolute top-1 right-2"></div> : ''}
             </li>
           </ul>
         </nav>

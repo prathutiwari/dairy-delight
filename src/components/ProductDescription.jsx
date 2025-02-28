@@ -1,28 +1,19 @@
 import React from 'react'
 import { Link, useLocation } from 'react-router-dom';
 import useProductData from '../hooks/useProductData';
+import { useDispatch } from 'react-redux';
+import { addItems } from '../utils/cartSlice';
 
 const ProductDescription = () => {
   const location = useLocation();
   const productId = location.pathname.split('/')[3];
   const productData = useProductData(productId);
-  console.log(productData);
 
-  const product = {
-    name: "Farm Fresh Homogenised Cow Milk",
-    oldPrice: 38,
-    newPrice: 37,
-    size: "500ml",
-    inStock: true,
-    deliveryMessage: "Add before 9:00 PM for next day delivery.",
-    imageUrl: 'https://pravarshaindustries.com/storage/products/6PDp0ncKeSEepO3e0nsSRlJgIAs1J63uthp5RPkt.webp',
-    additionalImages: [
-      'https://pravarshaindustries.com/storage/products/6PDp0ncKeSEepO3e0nsSRlJgIAs1J63uthp5RPkt.webp',
-      'https://pravarshaindustries.com/storage/products/iC7OTkjbSpRdMjMHMRHtvHNWBcwOMEbFO6Ni24qU.webp',
-      'https://pravarshaindustries.com/storage/products/QcVhV04lcX2gRwl3I9qrzzluYGDpbG6C6cbdbAG5.webp',
-      'https://pravarshaindustries.com/storage/products/IFX5zJrNaWTBnXrlELtp0mOlJwgTsKNNAz3KHzkc.png'
-    ],
-  };
+  const dispatch = useDispatch();
+
+  const handleAddToCart = (addProduct) => {
+    dispatch(addItems(addProduct));
+  }
 
   return (
     <div className="max-w-4xl mx-auto p-4">
@@ -37,7 +28,7 @@ const ProductDescription = () => {
         <div className="flex-shrink-0">
           <img
             src={productData.image}
-            alt={product.name}
+            alt={productData.name}
             className="w-80 h-80 object-contain mb-4"
           />
           <div className="flex space-x-2">
@@ -73,7 +64,7 @@ const ProductDescription = () => {
             <div className='flex items-center text-[20px] mb-3'>
               <p className="text-green-600 font-medium mr-2">
                 {productData.availability}
-              </p> / 
+              </p> /
               <p className="text-sm text-green-600 ml-2">
                 {productData.deliveryMessage}
               </p>
@@ -81,21 +72,22 @@ const ProductDescription = () => {
 
             <h2 className='text-[20px] font-medium mt-5'>Nutrition Info</h2>
             <div className='flex items-center flex-wrap'>
-              <p className='text[13px] font-normal mr-2'>Calories: {productData.nutrition_info.calories}gm</p> | 
-              <p className='text[13px] font-normal mx-2'>Protein: {productData.nutrition_info.protein}</p> | 
-              <p className='text[13px] font-normal mx-2'>Fat: {productData.nutrition_info.fat}</p> | 
-              <p className='text[13px] font-normal mx-2'>Cabrohyrates: {productData.nutrition_info.carbohydrates}</p> | 
-              <p className='text[13px] font-normal mr-2'>Sugar: {productData.nutrition_info.sugar}</p> | 
-              <p className='text[13px] font-normal mx-2'>Calcium: {productData.nutrition_info.calcium}</p> | 
+              <p className='text[13px] font-normal mr-2'>Calories: {productData.nutrition_info.calories}gm</p> |
+              <p className='text[13px] font-normal mx-2'>Protein: {productData.nutrition_info.protein}</p> |
+              <p className='text[13px] font-normal mx-2'>Fat: {productData.nutrition_info.fat}</p> |
+              <p className='text[13px] font-normal mx-2'>Cabrohyrates: {productData.nutrition_info.carbohydrates}</p> |
+              <p className='text[13px] font-normal mr-2'>Sugar: {productData.nutrition_info.sugar}</p> |
+              <p className='text[13px] font-normal mx-2'>Calcium: {productData.nutrition_info.calcium}</p> |
               <p className='text[13px] font-normal ml-2'>Vitamin D: {productData.nutrition_info.vitamin_d}</p>
             </div>
-            
+
 
           </div>
 
           <button
             type="button"
-            className="mt-1 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
+            className="w-1/2 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
+            onClick={() => handleAddToCart(productData)}
           >
             Add To Cart
           </button>
