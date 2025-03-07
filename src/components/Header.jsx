@@ -42,18 +42,18 @@ const Header = () => {
             <li className="py-1 px-2 mx-1">
               <Link to="/">Home</Link>
             </li>
-            <li className="py-1 px-2 mx-1">
+            {/* <li className="py-1 px-2 mx-1">
               <Link to="/about-us">About Us</Link>
-            </li>
+            </li> */}
             <li className="py-1 px-2 mx-1">
               <Link to="/products">Products</Link>
             </li>
-            <li className="py-1 px-2 mx-1">
+            {/* <li className="py-1 px-2 mx-1">
               <Link to="/blogs">Blogs</Link>
-            </li>
-            <li className="py-1 px-2 mx-1">
+            </li> */}
+            {/* <li className="py-1 px-2 mx-1">
               <Link to="/contact-us">Contact Us</Link>
-            </li>
+            </li> */}
             <li className="py-1 px-3 relative">
               <Link to="/cart"><i className="fi fi-rr-cart-shopping-fast text-[22px]"></i></Link>
               { cartItemsList.length > 0 ? <div className="w-2 h-2 rounded-full bg-red-600 absolute top-1 right-2"></div> : ''}
@@ -65,18 +65,18 @@ const Header = () => {
         {displayMenu && (
           <nav className="lg:hidden absolute right-0 top-[72px] shadow-lg w-[50%] bg-white pb-1 transition-all z-10">
             <ul className="text-black text-center">
-              <li className="py-2 px-4">
+              {/* <li className="py-2 px-4">
                 <Link to="/about-us">About Us</Link>
-              </li>
+              </li> */}
               <li className="py-2 px-4">
                 <Link to="/products">Products</Link>
               </li>
-              <li className="py-2 px-4">
+              {/* <li className="py-2 px-4">
                 <Link to="/blogs">Blogs</Link>
               </li>
               <li className="py-2 px-4">
                 <Link to="/contact-us">Contact Us</Link>
-              </li>
+              </li> */}
             </ul>
           </nav>
         )}
